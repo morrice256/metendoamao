@@ -1,6 +1,5 @@
 package com.morrice256.demo.domain.pessoa
 
-import com.morrice256.demo.domain.origem.OrigemDestino
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.Query

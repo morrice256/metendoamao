@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 
 @Entity
-class Origem (
+data class Origem (
     @Id @GeneratedValue
     var id: Long? = null,
     @Column

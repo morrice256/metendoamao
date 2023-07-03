@@ -1,5 +1,6 @@
 package com.morrice256.demo.config
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -15,11 +16,8 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 @EnableWebSecurity
 class SecurityConfig {
 
-    private var keycloakLogoutHandler: KeycloakLogoutHandler? = null
-
-    fun SecurityConfig(keycloakLogoutHandler: KeycloakLogoutHandler?) {
-        this.keycloakLogoutHandler = keycloakLogoutHandler
-    }
+    @Autowired
+    lateinit var jwtAuthConverter: JwtAuthConverter
 
     @Bean
     protected fun sessionAuthenticationStrategy(): SessionAuthenticationStrategy? {
@@ -29,15 +27,21 @@ class SecurityConfig {
     @Bean
     @Throws(Exception::class)
     fun filterChain(http: HttpSecurity): SecurityFilterChain? {
-        http.authorizeHttpRequests { authz -> authz
+        http
+                .authorizeHttpRequests { authz -> authz
                     .requestMatchers("/origemDestino/destino/**").permitAll()
+                    .requestMatchers("/pessoa/juridica/**").hasAuthority("SCOPE_email")
+                    .requestMatchers("/pessoa/fisica/**").hasAuthority("SCOPE_read")
+                    .requestMatchers("/pessoa/**").hasRole("USER")
                     .anyRequest().authenticated()
         }
 
         http.oauth2ResourceServer { obj: OAuth2ResourceServerConfigurer<HttpSecurity?> ->
-            obj.jwt()
+            obj.jwt {
+                it.jwtAuthenticationConverter(jwtAuthConverter)
+            }
         }
         return http.build()
-
     }
+
 }

@@ -17,6 +17,13 @@
 		<java.version>17</java.version>
 		<kotlin.version>1.8.21</kotlin.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<swagger-annotations-version>1.5.22</swagger-annotations-version>
+		<jackson-databind-nullable>0.2.1</jackson-databind-nullable>
+		<springfox-version>3.0.0</springfox-version>
+		<springfox-ui-version>2.8.0</springfox-ui-version>
+		<javax-annotation-api.version>1.3.2</javax-annotation-api.version>
+		<javax.validation-api.version>2.0.1.Final</javax.validation-api.version>
+		<javax.servlet-api.version>4.0.1</javax.servlet-api.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,6 +68,45 @@
 			<version>${mapstruct.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-annotations-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-ui-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>${jackson-databind-nullable}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>${javax-annotation-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${javax.validation-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -74,7 +120,7 @@
 			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>
 				<artifactId>kotlin-maven-plugin</artifactId>
-				<executions>
+				<executions >
 					<execution>
 						<id>compile</id>
 						<phase>process-sources</phase>
@@ -136,6 +182,32 @@
 						<version>${mapstruct.version}</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>4.2.3</version>
+				<executions>
+					<execution>
+						<id>user</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<!-- Arquivmos yml - com definição da API -->
+							<inputSpec>${project.basedir}/src/main/resources/api/user.yml</inputSpec>
+							<generatorName>kotlin-spring</generatorName>
+							<apiPackage>api</apiPackage>
+							<modelPackage>model</modelPackage>
+							<modelNameSuffix>Dto</modelNameSuffix>
+							<generateSupportingFiles>false</generateSupportingFiles>
+							<configOptions>
+								<interfaceOnly>true</interfaceOnly>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

@@ -63,12 +63,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct</artifactId>
-			<version>${mapstruct.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-annotations</artifactId>
 			<version>${swagger-annotations-version}</version>
@@ -138,13 +132,6 @@
 								<sourceDir>src/main/kotlin</sourceDir>
 								<sourceDir>src/main/java</sourceDir>
 							</sourceDirs>
-							<annotationProcessorPaths>
-								<path>
-									<groupId>org.mapstruct</groupId>
-									<artifactId>mapstruct-processor</artifactId>
-									<version>${mapstruct.version}</version>
-								</path>
-							</annotationProcessorPaths>
 						</configuration>
 					</execution>
 					<execution>
@@ -174,12 +161,6 @@
 						<groupId>org.jetbrains.kotlin</groupId>
 						<artifactId>kotlin-maven-noarg</artifactId>
 						<version>${kotlin.version}</version>
-					</dependency>
-
-					<dependency>
-						<groupId>org.mapstruct</groupId>
-						<artifactId>mapstruct-processor</artifactId>
-						<version>${mapstruct.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>

@@ -3,9 +3,9 @@ package com.morrice256.demo.controller
 import api.UserApi
 import model.UserDto
 import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.RestController
 
-@Controller
+@RestController
 class UserController: UserApi{
 
     override fun findOne(id: Long): ResponseEntity<UserDto> {

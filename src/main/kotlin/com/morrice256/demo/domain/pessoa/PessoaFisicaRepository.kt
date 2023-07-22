@@ -1,11 +1,12 @@
 package com.morrice256.demo.domain.pessoa
 
-import com.morrice256.demo.domain.origem.OrigemDestino
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository
+import org.springframework.stereotype.Repository
 
+@Repository
 interface PessoaFisicaRepository: CrudRepository<PessoaFisica, Long> {
 
 
@@ -37,5 +38,7 @@ interface PessoaFisicaRepository: CrudRepository<PessoaFisica, Long> {
     fun listarPFePJ(tipoDocumento: String,
                     numeroDocumento: String,
                     pageable: Pageable): Page<Pessoa>
+
+    fun findFistByCpf(numeroDocumento: String): PessoaFisica
 
 }

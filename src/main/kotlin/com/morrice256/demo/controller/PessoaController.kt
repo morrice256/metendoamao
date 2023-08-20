@@ -1,6 +1,7 @@
 package com.morrice256.demo.controller
 
 import com.morrice256.demo.domain.pessoa.*
+import com.morrice256.demo.service.pessoa.PessoaFisicaService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.GetMapping
@@ -10,19 +11,19 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/pessoa")
-class PessoaController (private val pessoaFisicaRepository: PessoaFisicaRepository,
+class PessoaController (private val pessoaFisicaService: PessoaFisicaService,
                         private val pessoaJuridicaRepository: PessoaJuridicaRepository){
 
     @GetMapping
     fun listPessoa(@RequestParam(required = false, defaultValue = "") tipoDocumento: String,
                    @RequestParam(required = false, defaultValue = "") numeroDocumento: String,
                    pageable: Pageable): Page<Pessoa> {
-        return pessoaFisicaRepository.listarPFePJ(tipoDocumento, numeroDocumento, pageable)
+        return pessoaFisicaService.listarPFePJ(tipoDocumento, numeroDocumento, pageable)
     }
 
     @GetMapping("/fisica")
     fun listFisica(): MutableIterable<PessoaFisica> {
-        return pessoaFisicaRepository.findAll()
+        return pessoaFisicaService.findAll()
     }
 
     @GetMapping("/juridica")

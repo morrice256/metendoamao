@@ -17,6 +17,7 @@
 		<java.version>17</java.version>
 		<kotlin.version>1.8.21</kotlin.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<cucumber.version>7.11.2</cucumber.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -59,6 +60,17 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java8</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
 		</dependency>
 
 	</dependencies>

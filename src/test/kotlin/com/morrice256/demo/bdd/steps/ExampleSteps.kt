@@ -21,15 +21,16 @@ class ExampleSteps @Inject constructor() : Pt {
 
         After { scenario: Scenario -> log.info("After scenario : " + scenario.name) }
 
-        Dado("I have {int} cakes in my belly") { int1: Int? ->
-            // Write code here that turns the phrase above into concrete actions
+        Dado("que posso ter pre-requisitos no sistema e esses dados precisam existir na base ou em qualquer lugar") {
+
         }
-        Quando("I wait {int} hour") { int1: Int? ->
-            // Write code here that turns the phrase above into concrete actions
+        Quando("executar uma determinada tarefa ou chamar um serviço") {
+
         }
-        Então("my belly should growl") {
-            // Write code here that turns the phrase above into concrete actions
+        Então("devo ter um resultados esperado para validar ou varios resultados para validar") {
+
         }
+
 
     }
 
